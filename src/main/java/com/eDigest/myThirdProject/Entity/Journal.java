@@ -1,32 +1,31 @@
 package com.eDigest.myThirdProject.Entity;
 
-import org.springframework.stereotype.Component;
 
-@Component
+import java.time.LocalDate;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.Data;
+
+
+@Document(collection = "journal_entry")
+@Data
 public class Journal {
 	
-	private int id;
+	@Id
+	private String id;
+	
 	private String journal;
+	
+	
 	private String description;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getJournal() {
-		return journal;
-	}
-	public void setJournal(String journal) {
-		this.journal = journal;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	private LocalDate date;
+	
+	private String title;
+	
+	
 	
 	
 
