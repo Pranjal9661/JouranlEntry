@@ -1,0 +1,1 @@
+I am developing a Srping Boot application in which one can write their journal about the places they have visited. Furthermore, the frontEnd part would also be integerated with this Application.Stay tuned for the updates.
