@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject.SecurityConfig;
+package com.Practice.myThirdProject.SecurityConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,11 +9,17 @@ import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.SessionManagementFilter;
 
-import com.eDigest.myThirdProject.Service.UserDetailsServicesImp;
+import com.Practice.myThirdProject.JwtFilter.JwtFilter;
+import com.Practice.myThirdProject.Service.UserDetailsServicesImp;
+
+import jakarta.websocket.Session;
 
 @Configuration
 @EnableWebSecurity
@@ -22,6 +28,9 @@ public class SecurityConfig extends SecurityConfigurerAdapter{
 	@Autowired
 	private UserDetailsServicesImp userDetailsServicesImp;
 	
+	@Autowired
+	private JwtFilter jwtFilter;
+	
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
@@ -29,7 +38,9 @@ public class SecurityConfig extends SecurityConfigurerAdapter{
 		.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").authenticated()
 				.requestMatchers("/api/public/**").permitAll()
 				.anyRequest().denyAll())
-		.httpBasic(Customizer.withDefaults());
+		.httpBasic(Customizer.withDefaults())
+		.sessionManagement(Session -> Session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+		.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();
 	}

@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject.Service;
+package com.Practice.myThirdProject.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 
-import com.eDigest.myThirdProject.Entity.User;
-import com.eDigest.myThirdProject.Repository.UserRespository;
+import com.Practice.myThirdProject.Entity.User;
+import com.Practice.myThirdProject.Repository.UserRespository;
 
 @Service
 public class UserService {
@@ -63,4 +63,6 @@ public class UserService {
 		 }
 		 return "Failure";
 	}
+
+
 }

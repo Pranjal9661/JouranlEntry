@@ -1,5 +1,5 @@
 /*
- * package com.eDigest.myThirdProject.SecurityConfig;
+ * package com.Practice.myThirdProject.SecurityConfig;
  * 
  * import org.springframework.context.annotation.Configuration; import
  * org.springframework.security.config.annotation.web.configuration.

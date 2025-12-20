@@ -1,8 +1,8 @@
-package com.eDigest.myThirdProject.Repository;
+package com.Practice.myThirdProject.Repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.eDigest.myThirdProject.Entity.User;
+import com.Practice.myThirdProject.Entity.User;
 
 public interface UserRespository extends MongoRepository<User, String>{
 	

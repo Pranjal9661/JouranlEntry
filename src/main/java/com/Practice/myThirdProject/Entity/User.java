@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject.Entity;
+package com.Practice.myThirdProject.Entity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject.Controller;
+package com.Practice.myThirdProject.Controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eDigest.myThirdProject.Entity.Journal;
-import com.eDigest.myThirdProject.Entity.User;
-import com.eDigest.myThirdProject.Service.JournalService;
-import com.eDigest.myThirdProject.Service.UserService;
+import com.Practice.myThirdProject.Entity.Journal;
+import com.Practice.myThirdProject.Entity.User;
+import com.Practice.myThirdProject.Service.JournalService;
+import com.Practice.myThirdProject.Service.UserService;
 
 @RestController
 @RequestMapping("/api/auth/journal")

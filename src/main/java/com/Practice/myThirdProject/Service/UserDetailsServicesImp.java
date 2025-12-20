@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject.Service;
+package com.Practice.myThirdProject.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.eDigest.myThirdProject.Entity.User;
-import com.eDigest.myThirdProject.Repository.UserRespository;
+import com.Practice.myThirdProject.Entity.User;
+import com.Practice.myThirdProject.Repository.UserRespository;
 
 @Component
 public class UserDetailsServicesImp implements UserDetailsService{

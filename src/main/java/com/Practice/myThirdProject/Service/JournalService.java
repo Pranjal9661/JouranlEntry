@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject.Service;
+package com.Practice.myThirdProject.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.eDigest.myThirdProject.Entity.Journal;
-import com.eDigest.myThirdProject.Entity.User;
-import com.eDigest.myThirdProject.Repository.JournalRepository;
+import com.Practice.myThirdProject.Entity.Journal;
+import com.Practice.myThirdProject.Entity.User;
+import com.Practice.myThirdProject.Repository.JournalRepository;
 
 @Service
 public class JournalService {

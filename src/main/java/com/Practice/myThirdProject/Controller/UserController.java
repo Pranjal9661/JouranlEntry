@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject.Controller;
+package com.Practice.myThirdProject.Controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eDigest.myThirdProject.Entity.User;
-import com.eDigest.myThirdProject.Service.UserService;
+import com.Practice.myThirdProject.Entity.User;
+import com.Practice.myThirdProject.Service.UserService;
 
 @RestController
 @RequestMapping("/api/user")

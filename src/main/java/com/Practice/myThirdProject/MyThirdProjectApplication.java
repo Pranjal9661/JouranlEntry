@@ -1,4 +1,4 @@
-package com.eDigest.myThirdProject;
+package com.Practice.myThirdProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
