@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +55,8 @@ public class JournalController {
 	
 	  @GetMapping("/list/{userName}") 
 	  public ResponseEntity<?> getUserEntries(@PathVariable String userName){
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		  
 		  User byUserName = userService.findByUserName(userName);
 		  List<Journal> list = byUserName.getJournalEntries();
 		  return new ResponseEntity<>(list,HttpStatus.OK);
@@ -62,7 +67,7 @@ public class JournalController {
 		  public ResponseEntity<?>update(@PathVariable String id,@PathVariable String userName,@RequestBody Journal entry) {
 			  try {
 		  Optional<Journal> old = journalService.getentryByid(id); 
-		  Journal j = new Journal(); 
+		  Journal j = new Journal();
 		  if(old!=null) { 
 			j= old.get();
 		  j.setDescription((entry.getDescription() != null &&

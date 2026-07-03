@@ -38,6 +38,13 @@ public class JwtFilter extends OncePerRequestFilter{
 		String token = null;
 		String userName = null;
 		
+		// added path checker to check whether public endpoints are also being authenticated or not.
+		 String path = request.getRequestURI();
+	        if (path.startsWith("/api/public/")) {
+	            filterChain.doFilter(request, response);
+	            return;
+	        }
+		
 		if(authHeader!=null && authHeader.startsWith("Bearer ")) {
 			token = authHeader.substring(7);
 			userName = jwtService.extractUserName(token);
