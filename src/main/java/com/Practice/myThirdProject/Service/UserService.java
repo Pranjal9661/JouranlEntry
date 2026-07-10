@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,7 +17,12 @@ import org.springframework.stereotype.Service;
 import com.Practice.myThirdProject.Entity.User;
 import com.Practice.myThirdProject.Repository.UserRespository;
 
+import lombok.extern.slf4j.Slf4j;
+
+	
+
 @Service
+@Slf4j
 public class UserService {
 
 	
@@ -31,6 +37,8 @@ public class UserService {
 	
 	private static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
+	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(UserService.class);
+	
 	public Optional<User> getentryByid(String id) {
 		
 		return userRepo.findById(id);
@@ -38,7 +46,26 @@ public class UserService {
 
 	public void saveEntry(User user) {
 		// TODO Auto-generated method stub
-		userRepo.save(user);
+		try {
+			userRepo.save(user);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+				log.info(" error Ocurred for User: {} " + user.getUserName());
+		}
+		
+	}
+	public boolean saveNewuser(User user) {
+		try {
+			user.setUserName(user.getUserName());
+			user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
+			userRepo.save(user);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.info(" error Ocurred for User: {} " + user.getUserName()); 
+			return false;
+		}
 	}
 
 	public List<User> listAllEntries() {

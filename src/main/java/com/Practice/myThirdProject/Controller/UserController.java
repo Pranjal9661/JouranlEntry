@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Practice.myThirdProject.Entity.User;
 import com.Practice.myThirdProject.Service.UserService;
 
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -36,9 +37,16 @@ public class UserController {
 	
 	@PostMapping("/addUsers")
 	public void addUsers(@RequestBody User user) {
-		user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
-		user.setRoles(Arrays.asList("USER"));
-		userService.saveEntry(user);
+		try {
+			user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
+			user.setRoles(Arrays.asList("USER"));
+			userService.saveEntry(user);
+		}
+		catch(Exception e){
+		
+			
+		}
+	
 	}
 	@PostMapping("/login")
 	public void login(@RequestBody User user) {
@@ -46,18 +54,23 @@ public class UserController {
 		userService.verify(user);
 	}
 	
+	
 	@PutMapping("/updateUser/{userName}")
 	public ResponseEntity<?> updateUser(@RequestBody User user,@PathVariable String userName) {
 		
-		User userInDb = userService.findByUserName(userName);
-		if(userInDb!=null) {
-			userInDb.setUserName(user.getUserName());
-			userInDb.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
-			userService.saveEntry(userInDb);
+		try {
+			User userInDb = userService.findByUserName(userName);
+			if(userInDb!=null) {
+				userInDb.setUserName(user.getUserName());
+				userInDb.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
+				userService.saveEntry(userInDb);
+				return new ResponseEntity<>(HttpStatus.OK);
+			}
 		}
-		
+		catch (Exception e) {
+			// TODO: handle exception
+		}		
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		
 	}
 	
 	
